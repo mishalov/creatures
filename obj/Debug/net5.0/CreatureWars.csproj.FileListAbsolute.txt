@@ -1,0 +1,5 @@
+/home/evgenii/creature-wars/obj/Debug/net5.0/CreatureWars.csprojAssemblyReference.cache
+/home/evgenii/creature-wars/obj/Debug/net5.0/CreatureWars.GeneratedMSBuildEditorConfig.editorconfig
+/home/evgenii/creature-wars/obj/Debug/net5.0/CreatureWars.AssemblyInfoInputs.cache
+/home/evgenii/creature-wars/obj/Debug/net5.0/CreatureWars.AssemblyInfo.cs
+/home/evgenii/creature-wars/obj/Debug/net5.0/CreatureWars.csproj.CoreCompileInputs.cache

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Pastel" Version="*"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="*"/>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="*"/>
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="*"/>
+    <PackageReference Include="Newtonsoft.Json" Version="*"/>
+  </ItemGroup>
+</Project>
