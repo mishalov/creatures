@@ -5,7 +5,7 @@ services:
   db:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
-    restart: always
+    restart: "no"
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
@@ -23,6 +23,7 @@ services:
       MINIO_ACCESS_KEY: minio
       MINIO_SECRET_KEY: 12345678
     command: server /data
+    restart: "no"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 30s
@@ -31,6 +32,6 @@ services:
 
   adminer:
     image: adminer
-    restart: always
+    restart: "no"
     ports:
-      - 8080:8080
+      - 7070:8080
