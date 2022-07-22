@@ -17,7 +17,8 @@ namespace CreatureWars.Class
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("Server=localhost;Database=creatures;User=root;Password=root;");
+            string connectionString = "Server=localhost;Database=creatures;User=root;Password=root;";
+            optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
         }
 
     }
