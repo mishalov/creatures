@@ -13,7 +13,7 @@ namespace CreatureWars.Class
     {
         public CreaturePrototype[] Deserialize()
         {
-            return JsonSerializer.Deserialize<CreaturePrototype[]>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "../../../Fixtures/Creature.json"));
+            return JsonSerializer.Deserialize<CreaturePrototype[]>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "../../../src/Fixtures/Creature.json"));
         }
     }
 }

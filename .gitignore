@@ -4,3 +4,8 @@
 db
 src/obj
 src/bin
+
+obj
+bin
+
+fs
