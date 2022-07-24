@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CreatureWars.Class
 {
+
     class ModifierPrototype : ModifierBase
     {
         public ModifierPrototype(string name, string description)
@@ -23,6 +24,7 @@ namespace CreatureWars.Class
             modifier.Heal = Heal;
             modifier.Duration = Duration;
             modifier.Tick = Tick;
+            modifier.PossibleTargets = PossibleTargets;
             return modifier;
         }
     }

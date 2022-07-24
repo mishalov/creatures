@@ -2,7 +2,7 @@
 
 namespace CreatureWars.Class 
 {
-    internal class GameContext : DbContext
+    class GameContext : DbContext
     {
         // public GameContext()
         // {

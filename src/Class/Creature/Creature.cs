@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace CreatureWars.Class
 {
-    internal class Creature : CreatureBase
+    class Creature : CreatureBase
     {
 
         public List<Item> Items { get; set; } = new List<Item>();
@@ -125,6 +125,20 @@ namespace CreatureWars.Class
             return damage;
         }
 
-
+        public void CastAbility(Creature target, Ability ability)
+        {
+            if (!Abilities.Contains(ability)) Game.Announcer.CreatureDoesntHaveThisAbility(this, ability);
+            foreach (var modifier in ability.Modifiers)
+            {
+                if (modifier.PossibleTargets == PossibleTargets.Self)
+                {
+                    this.ApplyModifier(modifier);
+                }
+                else
+                {
+                    target.ApplyModifier(modifier);
+                }
+            }
+        }
     }
 }

@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace CreatureWars.Class
 {
+    enum PossibleTargets
+    {
+        Self,
+        Target
+    }
+
     abstract class ModifierBase : GameObject, INameble
     {
         public Attributes Attributes = new Attributes();
@@ -15,6 +21,7 @@ namespace CreatureWars.Class
         public string Name { get; set; }
         public string Description { get; set; }
         public int Duration { get; set; }
+        public PossibleTargets PossibleTargets { get; set; }
         /** 
          * time in seconds before Heal or Danage if duration is set and applied on creature; if set to 0 heal or damage will be applied once
          */

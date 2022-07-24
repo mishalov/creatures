@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace CreatureWars.Class
 {
-    internal class CreatureBase : GameObject, INameble
+    class CreatureBase : GameObject, INameble
     {
         // protected int _MaxHitPoints = 1;
         protected int _HitPoints = 0;

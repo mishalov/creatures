@@ -5,28 +5,27 @@ using System.Drawing;
 
 namespace CreatureWars.Class
 {
-    internal class ConsoleAnnouncer : IActionAnnouncer
+    class ConsoleAnnouncer : IActionAnnouncer
     {
         public class ConsoleAnnouncerColor
         {
-            public readonly System.Drawing.Color BackgroundColor;
             public readonly System.Drawing.Color TextColor;
 
-            public ConsoleAnnouncerColor(System.Drawing.Color background, Color text)
+            public ConsoleAnnouncerColor(Color text)
             {
-                this.BackgroundColor = background;
                 this.TextColor = text;
             }
         }
 
-        public readonly ConsoleAnnouncerColor TargetColor = new ConsoleAnnouncerColor(Color.Black, Color.LightGreen);
-        public readonly ConsoleAnnouncerColor ActorColor = new ConsoleAnnouncerColor(Color.Black, Color.LightGreen);
-        public readonly ConsoleAnnouncerColor ActionColor = new ConsoleAnnouncerColor(Color.Black, Color.White);
-        public readonly ConsoleAnnouncerColor AttackColor = new ConsoleAnnouncerColor(Color.Black, Color.Red);
-        public readonly ConsoleAnnouncerColor SpellColor = new ConsoleAnnouncerColor(Color.Black, Color.MediumPurple);
-        public readonly ConsoleAnnouncerColor DamageColor = new ConsoleAnnouncerColor(Color.Black, Color.Red);
-        public readonly ConsoleAnnouncerColor HealColor = new ConsoleAnnouncerColor(Color.Black, Color.ForestGreen);
-        public readonly ConsoleAnnouncerColor StandardColor = new ConsoleAnnouncerColor(Color.Black, Color.LightGray);
+        public readonly ConsoleAnnouncerColor TargetColor = new ConsoleAnnouncerColor(Color.LightGreen);
+        public readonly ConsoleAnnouncerColor ActorColor = new ConsoleAnnouncerColor(Color.LightGreen);
+        public readonly ConsoleAnnouncerColor ActionColor = new ConsoleAnnouncerColor(Color.White);
+        public readonly ConsoleAnnouncerColor AttackColor = new ConsoleAnnouncerColor(Color.Red);
+        public readonly ConsoleAnnouncerColor SpellColor = new ConsoleAnnouncerColor(Color.MediumPurple);
+        public readonly ConsoleAnnouncerColor DamageColor = new ConsoleAnnouncerColor(Color.Red);
+        public readonly ConsoleAnnouncerColor HealColor = new ConsoleAnnouncerColor(Color.ForestGreen);
+        public readonly ConsoleAnnouncerColor StandardColor = new ConsoleAnnouncerColor(Color.LightGray);
+        public readonly ConsoleAnnouncerColor DescriptionColor = new ConsoleAnnouncerColor(Color.Gray);
 
         public ConsoleAnnouncer() { }
 
@@ -37,7 +36,8 @@ namespace CreatureWars.Class
                             ConsoleAnnouncerColor HealColor,
                             ConsoleAnnouncerColor StandardColor,
                             ConsoleAnnouncerColor AttackColor,
-                            ConsoleAnnouncerColor SpellColor)
+                            ConsoleAnnouncerColor SpellColor,
+                            ConsoleAnnouncerColor DescriptionColor)
         {
             this.TargetColor = TargetColor;
             this.ActionColor = ActionColor;
@@ -51,83 +51,97 @@ namespace CreatureWars.Class
 
         private string ActionString(string action)
         {
-            return action.Pastel(ActionColor.TextColor).PastelBg(ActionColor.BackgroundColor);
+            return action.Pastel(ActionColor.TextColor);
         }
 
         private string Damage(int damage)
         {
-            return damage.ToString().Pastel(DamageColor.TextColor).PastelBg(DamageColor.BackgroundColor);
+            return damage.ToString().Pastel(DamageColor.TextColor);
         }
 
         private string Actor(string character)
         {
-            return character.Pastel(ActorColor.TextColor).PastelBg(ActorColor.BackgroundColor);
+            return character.Pastel(ActorColor.TextColor);
         }
 
         private string Target(string character)
         {
-            return character.Pastel(ActorColor.TextColor).PastelBg(ActorColor.BackgroundColor);
+            return character.Pastel(ActorColor.TextColor);
         }
 
         private string RemainedHP(int remained)
         {
-            return remained.ToString().Pastel(HealColor.TextColor).PastelBg(HealColor.BackgroundColor);
+            return remained.ToString().Pastel(HealColor.TextColor);
         }
 
         private string Ability(string ability)
         {
-            return ability.Pastel(SpellColor.TextColor).PastelBg(SpellColor.BackgroundColor);
+            return ability.Pastel(SpellColor.TextColor);
         }
 
         private string Heal(int healed)
         {
-            return healed.ToString().Pastel(HealColor.TextColor).PastelBg(SpellColor.BackgroundColor);
+            return healed.ToString().Pastel(HealColor.TextColor);
         }
 
+        private string AbilityDescription(string description)
+        {
+            return description.ToString().Pastel(DescriptionColor.TextColor);
+        }
 
         public void AfterMeleeAttack(Creature dealer, Creature target, int damage, int remained)
         {
-            Console.WriteLine($"{ActionString("Melee Attack!")} {Actor(dealer.Name)} attacks {Target(target.Name)} with {Damage(damage)} damage! {Target(target.Name)} have {RemainedHP(remained)} hitpoints now!");
+            Announce($"{ActionString("Melee Attack!")} {Actor(dealer.Name)} attacks {Target(target.Name)} with {Damage(damage)} damage! {Target(target.Name)} have {RemainedHP(remained)} hitpoints now!");
         }
 
         public void AfterAbilityOnTarget(Creature dealer, Creature target, Ability ability)
         {
-            Console.WriteLine($"{Actor(target.Name)} use {Ability(ability.Name)} on {Target(target.Name)}");
+            Announce($"{Actor(target.Name)} use {Ability(ability.Name)} on {Target(target.Name)}");
         }
 
         public void AfterModifierDamage(Creature target, Modifier modifier)
         {
-            Console.WriteLine($"{Target(target.Name)} suffers {Damage(modifier.Damage)} from {Ability(modifier.Name)}. {RemainedHP(target.HitPoints)} hitpoints left");
+            Announce($"{Target(target.Name)} suffers {Damage(modifier.Damage)} from {Ability(modifier.Name)}. {RemainedHP(target.HitPoints)} hitpoints left");
         }
 
         public void AfterModifierApplied(Creature target, Modifier modifier)
         {
-            Console.WriteLine($"{Ability(modifier.Name)} was applied on {Target(target.Name)}");
+            Announce($"{Ability(modifier.Name)} was applied on {Target(target.Name)}. {AbilityDescription(modifier.Description)}");
         }
 
         public void AfterModifierEnded(Creature target, Modifier modifier)
         {
-            Console.WriteLine($"{Ability(modifier.Name)} was disappeared on {Target(target.Name)}");
+            Announce($"{Ability(modifier.Name)} was disappeared on {Target(target.Name)}");
         }
 
         public void AfterDead(Creature creature)
         {
-            Console.WriteLine($"{Target(creature.Name)} {"is dead".Pastel(AttackColor.TextColor)}. Last hit: ");
+            Announce($"{Target(creature.Name)} {"is dead".Pastel(AttackColor.TextColor)}. Last hit: ");
         }
 
         public void AfterHeal(Creature creature, int healed)
         {
-            Console.WriteLine($"{Target(creature.Name)} was healed with {Heal(healed)}");
+            Announce($"{Target(creature.Name)} was healed with {Heal(healed)}");
         }
 
         public void AfterHeal(Creature creature, int healed, Modifier modifier)
         {
-            Console.WriteLine($"{Target(creature.Name)} was healed with {Heal(healed)} by {Ability(modifier.Name)} effect. Current hitpoints: {RemainedHP(creature.HitPoints)}");
+            Announce($"{Target(creature.Name)} was healed with {Heal(healed)} by {Ability(modifier.Name)} effect. Current hitpoints: {RemainedHP(creature.HitPoints)}");
         }
 
         public void ErrorTargetDead(Creature target)
         {
-            Console.WriteLine($"{Target(target.Name)} already dead!");
+            Announce($"{Target(target.Name)} already dead!");
+        }
+
+        public void CreatureDoesntHaveThisAbility(Creature caster, Ability ability)
+        {
+            Announce($"{Target(caster.Name)} doesnt have ability ${ability.Name}");
+        }
+
+        private void Announce(string announcement)
+        {
+            Console.WriteLine(announcement);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace CreatureWars.Class
 {
-    internal class CreaturePrototype : CreatureBase
+    class CreaturePrototype : CreatureBase
     {
         public List<ItemPrototype> Items { get; set; } = new List<ItemPrototype>();
         public List<AbilityPrototype> Abilities { get; set; } = new List<AbilityPrototype>();

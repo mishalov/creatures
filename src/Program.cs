@@ -13,7 +13,6 @@ namespace CreatureWars
     {
         static void Main(string[] args)
         {
-
             ConsoleAnnouncer announcer = new ConsoleAnnouncer();
             using (GameContext context = new GameContext())
             {
@@ -26,8 +25,24 @@ namespace CreatureWars
 
             //Создание прототипа модификатора
             ModifierPrototype forestGood = new ModifierPrototype("Лесное благославнление", "Леса будут с тобой!!!!!");
+            ModifierPrototype overPowered = new ModifierPrototype("Мощь переполняет", "Леса будут с тобой!!!!!");
+
+            AbilityPrototype fireball = new AbilityPrototype("Огненный шар", "Мощное огненное заклинание");
+            ModifierPrototype instantDamage = new ModifierPrototype("Урон от огненного шара", "");
+            instantDamage.Damage = 10;
+            instantDamage.PossibleTargets = PossibleTargets.Target;
+            ModifierPrototype periodicalDamage = new ModifierPrototype("Периодический урон от огненного шара", "");
+            periodicalDamage.Damage = 2;
+            periodicalDamage.Duration = 10;
+            periodicalDamage.PossibleTargets = PossibleTargets.Target;
+            fireball.ModifierPrototypes.Add(instantDamage);
+            fireball.ModifierPrototypes.Add(periodicalDamage);
+
+
             forestGood.Duration = 2;
             forestGood.Attributes.Str = 5;
+
+            overPowered.Attributes.Str = 200;
             //
 
             //Создание прототипа
@@ -42,17 +57,20 @@ namespace CreatureWars
             var c1 = creaturePrototype.CreateInstance(new MeleeHitHandler());
             // c1.Name += " хитрый";
             var c2 = creaturePrototype2.CreateInstance(new MeleeHitHandler());
-            c2.Modifiers.Add(forestGood.CreateInstance());
+            c2.ApplyModifier(forestGood.CreateInstance());
+            // c2.ApplyModifier(overPowered.CreateInstance());
+            c2.Abilities.Add(fireball.CreateInstance());
+
             //Бой сосонов
             TimerCallback fight = new TimerCallback((object state) =>
             {
-                c1.HitCreatureMelee(c2);
-                c2.HitCreatureMelee(c1);
-
+                // c1.HitCreatureMelee(c2);
+                // c2.HitCreatureMelee(c1);
             });
 
+            c2.CastAbility(c1, c2.Abilities.First());
+
             Timer timer = new Timer(fight, null, 0, 200);
-            Console.Read();
         }
     }
 }

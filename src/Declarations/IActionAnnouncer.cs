@@ -18,5 +18,6 @@ namespace CreatureWars.Declarations
         void AfterHeal(Creature creature, int healed);
         void AfterHeal(Creature creature, int healed, Modifier modifier);
         void AfterDead(Creature creature);
+        void CreatureDoesntHaveThisAbility(Creature creature, Ability ability);
     }
 }

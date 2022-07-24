@@ -8,8 +8,13 @@ using System.Threading.Tasks;
 
 namespace CreatureWars.Class
 {
-    class Ability : AbilityPrototype
+    class Ability : AbilityBase
     {
         public List<Modifier> Modifiers { get; set; }
+        public Ability(string name, string description)
+        {
+            this.Name = name;
+            this.Description = description;
+        }
     }
 }
