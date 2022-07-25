@@ -1,0 +1,12 @@
+[
+    {
+        "Name": "Шапка",
+        "ProgramName": "head",
+        "MaxOnCharacter": 1
+    },
+    {
+        "Name": "Сверток",
+        "ProgramName": "wrapper",
+        "MaxOnCharacter": 1
+    }
+]

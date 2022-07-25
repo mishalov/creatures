@@ -16,7 +16,7 @@ namespace CreatureWars.Class
         public string Description { get; set; }
         public Attributes Attributes { get; set; } = new Attributes();
         public bool IsActionPossible { get { return !_isDead; } }
-
+        public string ProgramName { get; set; }
 
         public int HitPoints
         {

@@ -15,33 +15,35 @@ namespace CreatureWars.Class
         protected IMeleeHitHandler _MeleeDamageHandler;
         protected Timer _pereodicsTimer;
 
-        protected void TickPereodics(object state)
+        //Return modifier that should be removed
+        protected Modifier HandleModifier(Modifier modifier)
+        {
+            if (modifier.Damage > 0 && this.HitPoints > 0)
+            {
+                this.GetDamage(modifier.Damage);
+                Game.Announcer.AfterModifierDamage(this, modifier);
+            }
+            if (modifier.Heal > 0)
+            {
+                this.GetHeal(modifier.Heal);
+                Game.Announcer.AfterHeal(this, modifier.Heal, modifier);
+            }
+            if (modifier.Duration > 0)
+                modifier.Duration -= 1;
+            if (modifier.Duration == 0)
+            {
+                return modifier;
+            }
+            return null;
+        }
+
+        protected void TickPeriodic(object state)
         {
             if (_isDead) return;
-            List<Modifier> modifiersToRemove = new List<Modifier>();
-            // Deep copy for list of modifiers, because some of them could be removed in process
-            List<Modifier> _modifiers = Modifiers.Select(el => el).ToList();
-            foreach (Modifier modifier in _modifiers)
-            {
-                if (modifier.Damage > 0)
-                {
-                    this.GetDamage(modifier.Damage);
-                    Game.Announcer.AfterModifierDamage(this, modifier);
-                }
-                if (modifier.Heal > 0)
-                {
-                    this.GetHeal(modifier.Heal);
-                    Game.Announcer.AfterHeal(this, modifier.Heal, modifier);
-                }
-                if (modifier.Duration > 0)
-                    modifier.Duration -= 1;
-                if (modifier.Duration == 0)
-                {
-                    modifiersToRemove.Add(modifier);
-                }
-            }
 
-            modifiersToRemove.ForEach(modifier => RemoveModifier(modifier));
+            List<Modifier> _modifiers = Modifiers.Select(el => el).ToList();
+            var modifiersToRemove = _modifiers.Select((modifier) => HandleModifier(modifier)).Where((modifier) => modifier != null);
+            modifiersToRemove.ToList().ForEach(modifier => RemoveModifier(modifier));
         }
 
         public void KillCreature()
@@ -56,7 +58,7 @@ namespace CreatureWars.Class
             this.Name = name;
             this.HitPoints = MaxHitPoints;
             this._MeleeDamageHandler = MeleeDamageHandler;
-            TimerCallback timerCallback = new TimerCallback(TickPereodics);
+            TimerCallback timerCallback = new TimerCallback(TickPeriodic);
             this._pereodicsTimer = new Timer(timerCallback, null, 0, 1000);
         }
 
@@ -69,6 +71,11 @@ namespace CreatureWars.Class
 
         public List<Modifier> ApplyModifier(Modifier modifier)
         {
+            if (modifier.Duration == 0)
+            {
+                HandleModifier(modifier);
+                return Modifiers;
+            }
             Modifiers.Add(modifier);
             Game.Announcer.AfterModifierApplied(this, modifier);
             return Modifiers;
@@ -127,6 +134,7 @@ namespace CreatureWars.Class
 
         public void CastAbility(Creature target, Ability ability)
         {
+            Game.Announcer.CreatureUseTargetAbility(this, target, ability);
             if (!Abilities.Contains(ability)) Game.Announcer.CreatureDoesntHaveThisAbility(this, ability);
             foreach (var modifier in ability.Modifiers)
             {
@@ -139,6 +147,19 @@ namespace CreatureWars.Class
                     target.ApplyModifier(modifier);
                 }
             }
+        }
+        public void WearItem(Item item)
+        {
+            Items.Add(item);
+            Game.Announcer.WearItem(this, item);
+            item.Modifiers.ForEach((modifier) => ApplyModifier(modifier));
+        }
+
+        public void RemoveItem(Item item)
+        {
+            Items.Remove(item);
+            Game.Announcer.RemoveItem(this, item);
+            item.Modifiers.ForEach((modifier) => RemoveModifier(modifier));
         }
     }
 }

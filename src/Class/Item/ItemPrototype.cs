@@ -1,15 +1,18 @@
-﻿using CreatureWars.Declarations;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace CreatureWars.Class
 {
     class ItemPrototype : ItemBase
     {
         public List<ModifierPrototype> ModifierPrototypes { get; set; }
+        public ItemType ItemType { get; }
+
+        public ItemPrototype(ItemType itemType)
+        {
+            this.ItemType = itemType;
+        }
 
         public Item CreateInstance()
         {

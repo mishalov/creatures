@@ -26,6 +26,7 @@ namespace CreatureWars.Class
         public readonly ConsoleAnnouncerColor HealColor = new ConsoleAnnouncerColor(Color.ForestGreen);
         public readonly ConsoleAnnouncerColor StandardColor = new ConsoleAnnouncerColor(Color.LightGray);
         public readonly ConsoleAnnouncerColor DescriptionColor = new ConsoleAnnouncerColor(Color.Gray);
+        public readonly ConsoleAnnouncerColor ErrorColor = new ConsoleAnnouncerColor(Color.Red);
 
         public ConsoleAnnouncer() { }
 
@@ -37,7 +38,8 @@ namespace CreatureWars.Class
                             ConsoleAnnouncerColor StandardColor,
                             ConsoleAnnouncerColor AttackColor,
                             ConsoleAnnouncerColor SpellColor,
-                            ConsoleAnnouncerColor DescriptionColor)
+                            ConsoleAnnouncerColor DescriptionColor,
+                            ConsoleAnnouncerColor ErrorColor)
         {
             this.TargetColor = TargetColor;
             this.ActionColor = ActionColor;
@@ -47,6 +49,7 @@ namespace CreatureWars.Class
             this.StandardColor = StandardColor;
             this.AttackColor = AttackColor;
             this.SpellColor = SpellColor;
+            this.ErrorColor = ErrorColor;
         }
 
         private string ActionString(string action)
@@ -88,10 +91,14 @@ namespace CreatureWars.Class
         {
             return description.ToString().Pastel(DescriptionColor.TextColor);
         }
+        private string Error(string Message)
+        {
+            return Message.Pastel(ErrorColor.TextColor);
+        }
 
         public void AfterMeleeAttack(Creature dealer, Creature target, int damage, int remained)
         {
-            Announce($"{ActionString("Melee Attack!")} {Actor(dealer.Name)} attacks {Target(target.Name)} with {Damage(damage)} damage! {Target(target.Name)} have {RemainedHP(remained)} hitpoints now!");
+            Announce($"{Actor(dealer.Name)} attacks {Target(target.Name)} with {Damage(damage)} damage! {Target(target.Name)} have {RemainedHP(remained)} hitpoints now!");
         }
 
         public void AfterAbilityOnTarget(Creature dealer, Creature target, Ability ability)
@@ -136,7 +143,22 @@ namespace CreatureWars.Class
 
         public void CreatureDoesntHaveThisAbility(Creature caster, Ability ability)
         {
-            Announce($"{Target(caster.Name)} doesnt have ability ${ability.Name}");
+            Announce(Error($"{caster.Name} doesnt have ability {ability.Name}"));
+        }
+
+        public void CreatureUseTargetAbility(Creature caster, Creature target, Ability ability)
+        {
+            Announce($"{Actor(caster.Name)} casts {Ability(ability.Name)} on {Target(target.Name)}");
+        }
+
+        public void WearItem(Creature target, Item item)
+        {
+            Announce($"{Actor(target.Name)} wears {Ability(item.Name)}");
+        }
+
+        public void RemoveItem(Creature target, Item item)
+        {
+            Announce($"{Actor(target.Name)} removes {Ability(item.Name)}");
         }
 
         private void Announce(string announcement)

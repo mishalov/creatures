@@ -12,6 +12,7 @@ namespace CreatureWars.Class
     {
         public string Name { get; set; }
         public string Description { get; set; }
+        public string ProgramName { get; set; }
         public int Duration { get; set; }
     }
 }

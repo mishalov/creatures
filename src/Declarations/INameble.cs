@@ -9,6 +9,7 @@ namespace CreatureWars.Declarations
     interface INameble
     {
         string Name { get; set; }
+        string ProgramName { get; set; }
         string Description { get; set; }
     }
 }
