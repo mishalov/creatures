@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CreatureWars.Class
 {
-    class LocationBase : GameObject, INameble
+    class LocationBase : GameObject, INameable
     {
         public string Name { get; set; }
         public string Description { get; set; }

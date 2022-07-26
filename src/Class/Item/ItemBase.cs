@@ -3,7 +3,7 @@
 
 namespace CreatureWars.Class
 {
-    class ItemBase : GameObject, INameble
+    class ItemBase : GameObject, INameable
     {
         public string Name { get; set; }
         public string Description { get; set; }

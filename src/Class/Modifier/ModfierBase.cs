@@ -13,7 +13,7 @@ namespace CreatureWars.Class
         Target
     }
 
-    abstract class ModifierBase : GameObject, INameble
+    abstract class ModifierBase : GameObject, INameable
     {
         public Attributes Attributes = new Attributes();
         public int Damage { get; set; }

@@ -1,12 +1,9 @@
 ﻿using CreatureWars.Declarations;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 
 namespace CreatureWars.Class
 {
-    class CreatureBase : GameObject, INameble
+    class CreatureBase : GameObject, INameable
     {
         // protected int _MaxHitPoints = 1;
         protected int _HitPoints = 0;
