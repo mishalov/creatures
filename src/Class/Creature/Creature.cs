@@ -23,7 +23,7 @@ namespace CreatureWars.Class
                 this.GetDamage(modifier.Damage);
                 Game.Announcer.AfterModifierDamage(this, modifier);
             }
-            if (modifier.Heal > 0)
+            if (modifier.Heal > 0 && this.HitPoints < this.MaxHitPoints)
             {
                 this.GetHeal(modifier.Heal);
                 Game.Announcer.AfterHeal(this, modifier.Heal, modifier);

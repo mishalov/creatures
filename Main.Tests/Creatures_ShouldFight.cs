@@ -31,11 +31,12 @@ public class Creatures_ShouldFight
         periodicalDamage.Damage = 5;
         periodicalDamage.Duration = 10;
         periodicalDamage.PossibleTargets = PossibleTargets.Target;
-        var fireball = fixtureProcessor.AbilityPrototypeDeserialize()[0];
+        var fireball = fixtureProcessor.Deserialize<AbilityPrototype>("Ability")[0];
 
         //Создание прототипа
-        CreaturePrototype creaturePrototype = (new FixtureProcessor()).CreaturePrototypeDeserialize()[0];
-        CreaturePrototype creaturePrototype2 = (new FixtureProcessor()).CreaturePrototypeDeserialize()[1];
+        CreaturePrototype creaturePrototype = fixtureProcessor.Deserialize<CreaturePrototype>("Creature")[0];
+        creaturePrototype.ItemTypes = fixtureProcessor.Deserialize<ItemType>("ItemType");
+        CreaturePrototype creaturePrototype2 = fixtureProcessor.Deserialize<CreaturePrototype>("Creature")[1];
         // creaturePrototype.Name = "Рядовой Сосон";
         // creaturePrototype.Attributes = new Attributes(3, 5, 3, 3);
         // creaturePrototype.Modifiers.Add(forestGood);

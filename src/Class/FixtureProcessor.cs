@@ -18,10 +18,6 @@ namespace CreatureWars.Class
         {
             return AppDomain.CurrentDomain.BaseDirectory + "../../../../src/Fixtures/" + fixtureName + ".json";
         }
-        public CreaturePrototype[] CreaturePrototypeDeserialize()
-        {
-            return JsonSerializer.Deserialize<CreaturePrototype[]>(File.ReadAllText(CreateFixturePath("Creature")));
-        }
         public void Serialize(object toSerialize, string fixtureName)
         {
             JsonSerializer.Serialize(new FileStream(CreateFixturePath(fixtureName), FileMode.OpenOrCreate), toSerialize, new JsonSerializerOptions
@@ -30,9 +26,9 @@ namespace CreatureWars.Class
                 WriteIndented = true
             });
         }
-        public AbilityPrototype[] AbilityPrototypeDeserialize()
+        public List<T> Deserialize<T>(string fixtureName)
         {
-            return JsonSerializer.Deserialize<AbilityPrototype[]>(File.ReadAllText(CreateFixturePath("Ability")));
+            return JsonSerializer.Deserialize<T[]>(File.ReadAllText(CreateFixturePath(fixtureName))).ToList<T>();
         }
     }
 }

@@ -98,7 +98,7 @@ namespace CreatureWars.Class
 
         public void AfterMeleeAttack(Creature dealer, Creature target, int damage, int remained)
         {
-            Announce($"{Actor(dealer.Name)} attacks {Target(target.Name)} with {Damage(damage)} damage! {Target(target.Name)} have {RemainedHP(remained)} hitpoints now!");
+            Announce($"{Actor(dealer.Name)} attacks {Target(target.Name)} with {Damage(damage)} damage! {Target(target.Name)} hitpoints: {remained + damage}->{RemainedHP(remained)}!");
         }
 
         public void AfterAbilityOnTarget(Creature dealer, Creature target, Ability ability)
@@ -108,7 +108,7 @@ namespace CreatureWars.Class
 
         public void AfterModifierDamage(Creature target, Modifier modifier)
         {
-            Announce($"{Target(target.Name)} suffers {Damage(modifier.Damage)} from {Ability(modifier.Name)}. {RemainedHP(target.HitPoints)} hitpoints left");
+            Announce($"{Target(target.Name)} suffers {Damage(modifier.Damage)} from {Ability(modifier.Name)}. Hitpoints: {target.HitPoints + modifier.Damage}->{RemainedHP(target.HitPoints)}");
         }
 
         public void AfterModifierApplied(Creature target, Modifier modifier)

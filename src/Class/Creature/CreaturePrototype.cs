@@ -11,7 +11,7 @@ namespace CreatureWars.Class
         public List<ItemPrototype> Items { get; set; } = new List<ItemPrototype>();
         public List<AbilityPrototype> Abilities { get; set; } = new List<AbilityPrototype>();
         public List<ModifierPrototype> Modifiers { get; set; } = new List<ModifierPrototype>();
-
+        public List<ItemType> ItemTypes { get; set; } = new List<ItemType>();
 
 
         public Creature CreateInstance(IMeleeHitHandler MeleeDamageHandler)
