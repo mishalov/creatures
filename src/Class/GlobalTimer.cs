@@ -38,7 +38,7 @@ namespace CreatureWars.Class
 
 
     /**
-     * <summary>This class is managing all periodics in game: movement, spellticks, etc...</summary>
+     * <summary>This class is managing all periodic in game: movement, spellticks, etc...</summary>
      * 
      * 
      */

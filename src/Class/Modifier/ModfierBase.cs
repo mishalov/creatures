@@ -22,9 +22,10 @@ namespace CreatureWars.Class
         public string Description { get; set; }
         public int Duration { get; set; }
         public string ProgramName { get; set; }
-        public PossibleTargets PossibleTargets { get; set; }
+        public ICollection<PossibleTargets> PossibleTargets { get; set; }
+
         /** 
-         * time in seconds before Heal or Danage if duration is set and applied on creature; if set to 0 heal or damage will be applied once
+         * time in seconds before Heal or Damage if duration is set and applied on creature; if set to 0 heal or damage will be applied once
          */
         public double Tick { get; set; }
     }

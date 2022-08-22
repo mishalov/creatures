@@ -13,7 +13,7 @@ namespace CreatureWars.Class
         public List<Ability> Abilities { get; set; } = new List<Ability>();
         public List<Modifier> Modifiers { get; set; } = new List<Modifier>();
         protected IMeleeHitHandler _MeleeDamageHandler;
-        protected Timer _pereodicsTimer;
+        protected Timer _periodicTimer;
 
         //Return modifier that should be removed
         protected Modifier HandleModifier(Modifier modifier)
@@ -59,7 +59,7 @@ namespace CreatureWars.Class
             this.HitPoints = MaxHitPoints;
             this._MeleeDamageHandler = MeleeDamageHandler;
             TimerCallback timerCallback = new TimerCallback(TickPeriodic);
-            this._pereodicsTimer = new Timer(timerCallback, null, 0, 1000);
+            this._periodicTimer = new Timer(timerCallback, null, 0, 1000);
         }
 
         public List<Modifier> RemoveModifier(Modifier modifier)
@@ -132,10 +132,16 @@ namespace CreatureWars.Class
             return damage;
         }
 
-        public void CastAbility(Creature target, Ability ability)
+        public bool CastAbility(Creature target, Ability ability)
         {
             Game.Announcer.CreatureUseTargetAbility(this, target, ability);
             if (!Abilities.Contains(ability)) Game.Announcer.CreatureDoesntHaveThisAbility(this, ability);
+
+            if (ability.PossibleTargets == PossibleTargets.Target && target == this){
+                Game.Announcer.WrongTarget(this, target, ability);
+                return false;
+            }
+
             foreach (var modifier in ability.Modifiers)
             {
                 if (modifier.PossibleTargets == PossibleTargets.Self)
@@ -147,6 +153,8 @@ namespace CreatureWars.Class
                     target.ApplyModifier(modifier);
                 }
             }
+
+            return true;
         }
         public void WearItem(Item item)
         {

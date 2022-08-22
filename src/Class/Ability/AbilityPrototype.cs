@@ -11,15 +11,16 @@ namespace CreatureWars.Class
     {
         public List<ModifierPrototype> ModifierPrototypes { get; set; }
 
-        public AbilityPrototype(string name, string description)
+        public AbilityPrototype(string name, string description, PossibleTargets possibleTargets)
         {
             this.Name = name;
             this.Description = description;
+            this.PossibleTargets = possibleTargets;
         }
 
         public Ability CreateInstance()
         {
-            Ability ability = new Ability(Name, Description);
+            Ability ability = new Ability(Name, Description, { PossibleTargets });
             ability.Modifiers = ModifierPrototypes.Select(el => el.CreateInstance()).ToList();
             ability.Description = Description;
             ability.Name = Name;

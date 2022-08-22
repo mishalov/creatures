@@ -20,6 +20,7 @@ namespace CreatureWars.Declarations
         void AfterDead(Creature creature);
         void CreatureDoesntHaveThisAbility(Creature creature, Ability ability);
         void CreatureUseTargetAbility(Creature creature, Creature target, Ability ability);
+        void WrongTarget(Creature creature, Creature target, Ability ability);
         void WearItem(Creature target, Item item);
         void RemoveItem(Creature target, Item item);
     }

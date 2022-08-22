@@ -150,6 +150,10 @@ namespace CreatureWars.Class
         {
             Announce($"{Actor(caster.Name)} casts {Ability(ability.Name)} on {Target(target.Name)}");
         }
+        public void WrongTarget(Creature caster, Creature target, Ability ability)
+        {
+            Announce($"{Actor(caster.Name)} can not cast {Ability(ability.Name)} on {Target(target.Name)}. Wrong target!");
+        }
 
         public void WearItem(Creature target, Item item)
         {
