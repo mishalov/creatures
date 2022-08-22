@@ -137,14 +137,14 @@ namespace CreatureWars.Class
             Game.Announcer.CreatureUseTargetAbility(this, target, ability);
             if (!Abilities.Contains(ability)) Game.Announcer.CreatureDoesntHaveThisAbility(this, ability);
 
-            if (ability.PossibleTargets == PossibleTargets.Target && target == this){
+            if (!ability.PossibleTargets.Contains(PossibleTargets.Self) && target == this){
                 Game.Announcer.WrongTarget(this, target, ability);
                 return false;
             }
 
             foreach (var modifier in ability.Modifiers)
             {
-                if (modifier.PossibleTargets == PossibleTargets.Self)
+                if (modifier.PossibleTargets.Contains(PossibleTargets.Self) )
                 {
                     this.ApplyModifier(modifier);
                 }

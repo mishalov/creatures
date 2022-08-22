@@ -11,7 +11,7 @@ namespace CreatureWars.Class
     class Ability : AbilityBase
     {
         public List<Modifier> Modifiers { get; set; }
-        public Ability(string name, string description, PossibleTargets possibleTargets)
+        public Ability(string name, string description, ICollection<PossibleTargets> possibleTargets)
         {
             this.Name = name;
             this.Description = description;
