@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="NJsonSchema" Version="10.7.2" />
     <PackageReference Include="Pastel" Version="*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="*" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="*" />

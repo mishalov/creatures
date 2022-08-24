@@ -7,7 +7,9 @@
                 "Name": "\u0423\u0440\u043E\u043D \u043E\u0442 \u043E\u0433\u043D\u0435\u043D\u043D\u043E\u0433\u043E \u0448\u0430\u0440\u0430",
                 "Description": "",
                 "Duration": 0,
-                "PossibleTargets": 1,
+                "PossibleTargets": [
+                    1
+                ],
                 "Tick": 0,
                 "Id": 0
             },
@@ -17,12 +19,16 @@
                 "Name": "Ожог \u043E\u0442 \u043E\u0433\u043D\u0435\u043D\u043D\u043E\u0433\u043E \u0448\u0430\u0440\u0430",
                 "Description": "\u0413\u043E\u0440\u0438\u0438\u0438\u0438\u0438\u043C \u0430\u0430\u0430\u0430\u0430\u0430",
                 "Duration": 10,
-                "PossibleTargets": 1,
+                "PossibleTargets": [
+                    1
+                ],
                 "Tick": 0,
                 "Id": 0
             }
         ],
-        "PossibleTargets": 1,
+        "PossibleTargets": [
+            1
+        ],
         "Name": "\u041E\u0433\u043D\u0435\u043D\u043D\u044B\u0439 \u0448\u0430\u0440",
         "Description": "\u041C\u043E\u0449\u043D\u043E\u0435 \u043E\u0433\u043D\u0435\u043D\u043D\u043E\u0435 \u0437\u0430\u043A\u043B\u0438\u043D\u0430\u043D\u0438\u0435",
         "Duration": 0,

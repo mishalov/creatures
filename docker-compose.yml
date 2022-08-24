@@ -2,36 +2,20 @@
 version: "3.1"
 
 services:
-  db:
-    image: mysql
-    command: --default-authentication-plugin=mysql_native_password
-    restart: "no"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-    volumes:
-      - ./db:/var/lib/mysql
+  creatures_db:
+    image: postgres
+    restart: no
     ports:
-      - 3306:3306
-
-  minio:
-    image: minio/minio:latest
-    ports:
-      - "9000:9000"
-    volumes:
-      - ./fs:/data
+      - 5678:5432
     environment:
-      MINIO_ACCESS_KEY: minio
-      MINIO_SECRET_KEY: 12345678
-    command: server /data
-    restart: "no"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
-      interval: 30s
-      timeout: 20s
-      retries: 3
+      POSTGRES_PASSWORD: creatures
+      POSTGRES_DB: creatures
+      POSTGRES_USER: creatures
 
   adminer:
     image: adminer
-    restart: "no"
+    restart: no
     ports:
-      - 7070:8080
+      - 7890:8080
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql
