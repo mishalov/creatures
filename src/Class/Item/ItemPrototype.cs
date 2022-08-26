@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace CreatureWars.Class
 {
+
     class ItemPrototype : ItemBase
     {
         public List<ModifierPrototype> ModifierPrototypes { get; set; }
