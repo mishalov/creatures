@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CreatureWars.Declarations
 {
-    interface IActionAnnouncer
+    public interface IActionAnnouncer
     {
         void ErrorTargetDead(Creature target);
         void AfterMeleeAttack(Creature dealer, Creature target, int damage, int remained);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CreatureWars.Declarations
 {
-    interface INameable
+    public interface INameable
     {
         string Name { get; set; }
         string ProgramName { get; set; }

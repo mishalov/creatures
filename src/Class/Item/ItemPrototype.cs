@@ -5,7 +5,7 @@ using System.Linq;
 namespace CreatureWars.Class
 {
 
-    class ItemPrototype : ItemBase
+    public class ItemPrototype : ItemBase
     {
         public List<ModifierPrototype> ModifierPrototypes { get; set; }
         public ItemType ItemType { get; }

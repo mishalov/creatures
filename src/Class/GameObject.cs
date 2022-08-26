@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace CreatureWars.Class
 {
-    class GameObject
+    public class GameObject
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id  { get; set; }
+        public int Id { get; set; }
         protected Game Game;
 
         public GameObject()

@@ -3,7 +3,7 @@ using CreatureWars.Declarations;
 
 namespace CreatureWars.Class
 {
-    class ItemType : GameObject, INameable
+    public class ItemType : GameObject, INameable
     {
         public string Name { get; set; }
         public string Description { get; set; }

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CreatureWars.Class 
+namespace CreatureWars.Class
 {
-    class Game
+    public class Game
     {
         public readonly IActionAnnouncer Announcer = null;
         private static Game instance;
@@ -25,7 +25,7 @@ namespace CreatureWars.Class
             if (instance != null) throw new Exception("Already initialized!");
             instance = new Game(actionAnnouncer, context);
             return instance;
-            
+
         }
 
         public static Game getInstance()
@@ -34,7 +34,7 @@ namespace CreatureWars.Class
             {
                 throw new Exception("Not initialized! Please, use .init before!");
             }
-             
+
             return instance;
         }
     }

@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace CreatureWars.Class
 {
-    enum PossibleTargets
+    public enum PossibleTargets
     {
         Self,
         Target
     }
 
-    abstract class ModifierBase : GameObject, INameable
+    public abstract class ModifierBase : GameObject, INameable
     {
         public Attributes Attributes = new Attributes();
         public int Damage { get; set; }

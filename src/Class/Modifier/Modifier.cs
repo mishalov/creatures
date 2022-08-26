@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CreatureWars.Class
 {
-    class Modifier : ModifierBase
+    public class Modifier : ModifierBase
     {
         public Modifier(string name, string description)
         {

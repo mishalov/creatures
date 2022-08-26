@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CreatureWars.Class
 {
-    class Ability : AbilityBase
+    public class Ability : AbilityBase
     {
         public List<Modifier> Modifiers { get; set; }
         public Ability(string name, string description, ICollection<PossibleTargets> possibleTargets)

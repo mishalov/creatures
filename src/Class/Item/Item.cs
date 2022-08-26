@@ -3,7 +3,7 @@
 
 namespace CreatureWars.Class
 {
-    class Item : ItemBase
+    public class Item : ItemBase
     {
         public List<Modifier> Modifiers { get; set; }
     }

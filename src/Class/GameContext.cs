@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace CreatureWars.Class 
+namespace CreatureWars.Class
 {
-    class GameContext : DbContext
+    public class GameContext : DbContext
     {
         // public GameContext()
         // {

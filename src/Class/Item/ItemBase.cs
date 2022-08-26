@@ -3,12 +3,12 @@
 
 namespace CreatureWars.Class
 {
-    enum ItemRarity
+    public enum ItemRarity
     {
         Poor, Common, Uncommon, Rare, Epic, Legendary
     }
 
-    class ItemBase : GameObject, INameable
+    public class ItemBase : GameObject, INameable
     {
         public string Name { get; set; }
         public string Description { get; set; }

@@ -3,7 +3,7 @@ using System;
 
 namespace CreatureWars.Class
 {
-    class CreatureBase : GameObject, INameable
+    public class CreatureBase : GameObject, INameable
     {
         // protected int _MaxHitPoints = 1;
         protected int _HitPoints = 0;
