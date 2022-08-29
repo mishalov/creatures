@@ -8,12 +8,7 @@ namespace CreatureWars.Class
     public class ItemPrototype : ItemBase
     {
         public List<ModifierPrototype> ModifierPrototypes { get; set; }
-        public ItemType ItemType { get; }
 
-        public ItemPrototype(ItemType itemType)
-        {
-            this.ItemType = itemType;
-        }
 
         public Item CreateInstance()
         {

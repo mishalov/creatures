@@ -16,5 +16,7 @@ namespace CreatureWars.Class
         public Attributes Attributes
         { get; set; }
         public ItemRarity Rarity { get; set; }
+        public ItemType ItemType { get; }
+
     }
 }

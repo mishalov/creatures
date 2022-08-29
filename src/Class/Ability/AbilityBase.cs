@@ -14,7 +14,7 @@ namespace CreatureWars.Class
         public string Description { get; set; }
         public string ProgramName { get; set; }
         public int Duration { get; set; }
-        public ICollection<PossibleTargets> PossibleTargets { get; set; }
+        public List<PossibleTargets> PossibleTargets { get; set; }
 
     }
 }
