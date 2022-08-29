@@ -20,7 +20,7 @@ namespace CreatureWars.Class
 
         public Ability CreateInstance()
         {
-            Ability ability = new Ability(Name, Description, PossibleTargets);
+            Ability ability = new Ability(Name, Description, this.PossibleTargets);
             ability.Modifiers = ModifierPrototypes.Select(el => el.CreateInstance()).ToList();
             ability.Description = Description;
             ability.Name = Name;

@@ -24,7 +24,7 @@ namespace CreatureWars.Class
             modifier.Heal = Heal;
             modifier.Duration = Duration;
             modifier.Tick = Tick;
-            modifier.PossibleTargets = PossibleTargets;
+            modifier.PossibleTargets = this.PossibleTargets;
             return modifier;
         }
     }

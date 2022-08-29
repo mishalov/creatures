@@ -7,6 +7,7 @@ namespace GameDatabase;
 
 public class GameContext : DbContext
 {
+    public static string ConnectionString = "Host=localhost;Port=5678;Database=creatures;Username=creatures;Password=creatures";
     public DbSet<AbilityPrototype> AbilityPrototypes { get; set; }
     public DbSet<CreaturePrototype> CreaturePrototypes { get; set; }
     public DbSet<ItemPrototype> ItemPrototypes { get; set; }
@@ -14,6 +15,6 @@ public class GameContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql("Host=localhost;Port=5678;Database=creatures;Username=creatures;Password=creatures");
+        optionsBuilder.UseNpgsql(GameContext.ConnectionString);
     }
 }

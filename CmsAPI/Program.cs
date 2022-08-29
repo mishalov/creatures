@@ -9,8 +9,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<GameContext>();
-
+builder.Services.AddDbContext<GameContext>(
+        opts => opts.UseNpgsql(GameContext.ConnectionString)
+    );
 
 
 var app = builder.Build();
