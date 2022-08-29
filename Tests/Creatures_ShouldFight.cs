@@ -1,4 +1,4 @@
-namespace Main.Tests;
+namespace Tests;
 using CreatureWars.Class;
 using CreatureWars.Formulas;
 using System;
@@ -26,11 +26,11 @@ public class Creatures_ShouldFight
 
         ModifierPrototype instantDamage = new ModifierPrototype("Урон от огненного шара", "");
         instantDamage.Damage = 10;
-        instantDamage.PossibleTargets = new List<PossibleTargets> { PossibleTargets.Target};
+        instantDamage.PossibleTargets = new List<PossibleTargets> { PossibleTargets.Target };
         ModifierPrototype periodicalDamage = new ModifierPrototype("Периодический урон от огненного шара", "Горииииим аааааа");
         periodicalDamage.Damage = 5;
         periodicalDamage.Duration = 10;
-        periodicalDamage.PossibleTargets = new List<PossibleTargets> { PossibleTargets.Target};
+        periodicalDamage.PossibleTargets = new List<PossibleTargets> { PossibleTargets.Target };
         var fireball = fixtureProcessor.Deserialize<AbilityPrototype>("Ability")[0];
 
         //Создание прототипа

@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.6" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <ProjectReference Include="..\src\CreatureWars.csproj" />
+  </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GameDatabase\GameDatabase.csproj" />
   </ItemGroup>
 </Project>

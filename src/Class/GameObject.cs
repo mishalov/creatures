@@ -13,6 +13,8 @@ namespace CreatureWars.Class
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
+        [NotMapped]
         protected Game Game;
 
         public GameObject()

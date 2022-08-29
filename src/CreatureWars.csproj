@@ -7,7 +7,6 @@
     <PackageReference Include="NJsonSchema" Version="10.7.2" />
     <PackageReference Include="Pastel" Version="*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="*" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="*" />
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="*" />
     <PackageReference Include="Newtonsoft.Json" Version="*" />
     <PackageReference Include="xunit" Version="2.4.1" />

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CreatureWars.Declarations
 {
-    interface IAbilityUseHandler
+    public interface IAbilityUseHandler
     {
         int UseAbilityOnTarget(Ability ability, Creature user, Creature target);
         int UseAbilityOnSelf(Ability ability, Creature user);

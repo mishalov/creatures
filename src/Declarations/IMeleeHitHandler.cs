@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace CreatureWars.Declarations
 {
-    interface IMeleeHitHandler
-    { 
+    public interface IMeleeHitHandler
+    {
         int CalculateMeleeDamage(Creature dealer, Creature target);
     }
 }

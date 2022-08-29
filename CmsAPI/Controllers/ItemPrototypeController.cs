@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using CreatureWars.Class;
 using CreatureWars.Formulas;
+using GameDatabase;
 
 namespace CmsAPI.Controllers;
 
@@ -9,6 +10,12 @@ namespace CmsAPI.Controllers;
 [Route("[controller]")]
 public class ItemPrototypeController : ControllerBase
 {
+    private readonly GameContext _gameContext;
+
+    public ItemPrototypeController(GameContext _gameContext)
+    {
+        this._gameContext = _gameContext;
+    }
     // private static readonly string[] Summaries = new[]
     // {
     //     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -22,9 +29,9 @@ public class ItemPrototypeController : ControllerBase
     // }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ItemPrototype>>> Index()
+    public ActionResult<IEnumerable<ItemPrototype>> Index()
     {
-        return "Result";
+        return this._gameContext.ItemPrototypes.ToArray();
     }
 
     // [HttpPost]
